@@ -1,0 +1,25 @@
+CC = gcc
+CFLAGS = -g
+OBJFILES1 = assignment2_a.o mmio.o
+OBJFILES2 = assignment2_b.o mmio.o
+DEPS = mmio.h
+TARGET1 = A
+TARGET2 = B
+
+REMOVE_COMMAND = rm
+OUTPUT_EXTENSION = 
+
+
+all: $(TARGET1) $(TARGET2) remove
+	
+$(TARGET1): $(OBJFILES1) $(DEPS)
+	$(CC) $(CFLAGS) -o $(TARGET1) $(OBJFILES1)
+
+$(TARGET2): $(OBJFILES2) $(DEPS)
+	$(CC) $(CFLAGS) -o $(TARGET2) $(OBJFILES2)
+
+remove:
+	$(REMOVE_COMMAND) $(sort $(OBJFILES1) $(OBJFILES2))
+
+clean:
+	$(REMOVE_COMMAND) $(TARGET1)$(OUTPUT_EXTENSION) $(TARGET2)$(OUTPUT_EXTENSION) 
